@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 20 84% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 100% 97%;
+    --secondary-foreground: 20 84% 30%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 20 84% 56%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 20 84% 56%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222 18% 12%;
+    --foreground: 210 40% 98%;
+    
+    --card: 222 16% 16%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222 16% 16%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 20 84% 56%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 20 20% 20%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 75.1%;
+    
+    --accent: 20 84% 56%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 62.8% 40.6%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 217.2 32.6% 22.5%;
+    --input: 217.2 32.6% 22.5%;
+    --ring: 20 84% 56%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss03", "cv01", "cv02", "cv03";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Melhorias para inputs de tempo */
+  input[type="time"] {
+    cursor: pointer;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .dark input[type="time"] {
+    color-scheme: dark;
+  }
+
+  /* Glass morphism effect */
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .dark .glassmorphism {
+    background: rgba(30, 30, 35, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(50, 50, 55, 0.18);
+  }
+
+  .result-card {
+    transition: all 0.3s ease;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .result-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.08), 0 10px 15px -6px rgba(0, 0, 0, 0.02);
+  }
+  
+  .dark .result-card:hover {
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.25), 0 10px 15px -6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Gradiente de fundo para a página */
+  .bg-gradient-custom {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
+    background-attachment: fixed;
+  }
+  
+  /* Efeito de brilho para elementos destacados */
+  .glow-effect {
+    box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3);
+  }
+  
+  .dark .glow-effect {
+    box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.2);
+  }
+  
+  /* Animação de pulso para elementos interativos */
+  @keyframes pulse-light {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(var(--primary-rgb), 0);
+    }
+  }
+  
+  .pulse-animation:hover {
+    animation: pulse-light 1.5s infinite;
+  }
+  
+  /* Estilo para cabeçalhos de cartões */
+  .card-header {
+    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.15) 0%, rgba(var(--primary-rgb), 0.05) 100%);
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+  }
+  
+  .dark .card-header {
+    background: linear-gradient(90deg, rgba(var(--primary-rgb), 0.2) 0%, rgba(var(--primary-rgb), 0.05) 100%);
+    border-bottom: 1px solid rgba(var(--primary-rgb), 0.15);
+  }
+  
+  /* Melhorias para botões */
+  .btn-enhanced {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-enhanced:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .btn-enhanced:hover:after {
+    opacity: 1;
+  }
+  
+  .dark .btn-enhanced:after {
+    background: linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+  }
+
+  /* Melhorias para campos de data e hora */
+  .date-time-field {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .date-time-field:hover {
+    border-color: hsl(var(--primary));
+  }
+
+  .dark .date-time-field {
+    background-color: hsl(var(--background));
+    border-color: hsl(var(--border));
+  }
+
+  .dark .date-time-field:hover {
+    background-color: hsl(var(--background));
+    border-color: hsl(var(--primary));
+  }
+
+  .dark .date-time-field:focus-within {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px hsla(var(--primary), 0.3);
+  }
+}
